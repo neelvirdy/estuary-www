@@ -11,8 +11,19 @@ const FilesTable = ({ files }) => {
       {
         id: 'Id',
         Header: 'id',
-        accessor: (data) => String(data.id).padStart(9, '0'),
-        Cell: ({ value }) => <span style={{ fontFamily: 'Mono', opacity: 0.4 }}>{value}</span>,
+        accessor: (data) => {
+          const idFormatted = String(data.id).padStart(9, '0');
+          const contentLink = '/content/' + data.id;
+          return {
+            idFormatted,
+            contentLink,
+          };
+        },
+        Cell: ({ value }) => (
+          <a href={value.contentLink} style={{ fontFamily: 'Mono', opacity: 0.4 }} target="_blank" className={tstyles.cta}>
+            {value.idFormatted}
+          </a>
+        ),
         disableFilters: true,
         width: '7.8em',
       },

@@ -76,6 +76,7 @@ export const ContentCard = ({ content, deals, id, root, failuresCount, viewer })
   }
 
   const dealErrorURL = `/errors/${id}`;
+  const contentIdURL = `/content/${id}`;
 
   return (
     <div className={styles.group}>
@@ -113,7 +114,11 @@ export const ContentCard = ({ content, deals, id, root, failuresCount, viewer })
               </a>
             </td>
 
-            <td className={tstyles.td}>{id}</td>
+            <td className={tstyles.td}>
+              <a className={tstyles.cta} href={contentIdURL} target="_blank">
+                {id}
+              </a>
+            </td>
 
             <td className={tstyles.td}>{content ? U.bytesToSize(content.size, 2) : null}</td>
           </tr>
@@ -155,7 +160,7 @@ export const ContentCard = ({ content, deals, id, root, failuresCount, viewer })
   );
 };
 
-class ContentStatus extends React.Component<any, any> {
+export class ContentStatus extends React.Component<any, any> {
   state = {
     status: null,
   };
